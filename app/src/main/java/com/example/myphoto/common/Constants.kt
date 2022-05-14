@@ -1,4 +1,4 @@
-package com.example.myphoto
+package com.example.myphoto.common
 
 /**
  *Created by jhcheng on 13/5/2022.

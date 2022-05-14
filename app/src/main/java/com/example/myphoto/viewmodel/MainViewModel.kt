@@ -20,9 +20,9 @@ class MainViewModel(application: Application) : AndroidViewModel(application) {
     private val _photoDetails = mutableStateOf(emptyList<PhotoDetail>())
     val photoDetails: State<List<PhotoDetail>> = _photoDetails
 
-    fun loadPhotosFromFlickr() {
+    fun loadPhotos() {
          viewModelScope.launch(Dispatchers.IO) {
-             _photoDetails.value = photoRepository.getPhotosFromFlickr()
+             _photoDetails.value = photoRepository.getPhotos()
         }
     }
 }

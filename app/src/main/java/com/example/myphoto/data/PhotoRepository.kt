@@ -6,7 +6,7 @@ package com.example.myphoto.data
 
 class PhotoRepository(private val photoSource: PhotoSource = PhotoSource()) {
 
-    suspend fun getPhotosFromFlickr() : List<PhotoDetail> {
+    suspend fun getPhotos() : List<PhotoDetail> {
         return photoSource.load().photos.photo
     }
 }

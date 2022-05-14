@@ -1,6 +1,6 @@
 package com.example.myphoto.data
 
-import com.example.myphoto.Constants
+import com.example.myphoto.common.Constants
 import com.example.myphoto.network.KtorHttpClient
 import io.ktor.client.*
 import io.ktor.client.call.*

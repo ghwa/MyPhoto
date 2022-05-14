@@ -1,4 +1,4 @@
-package com.example.myphoto
+package com.example.myphoto.view
 
 import android.os.Bundle
 import androidx.activity.ComponentActivity
@@ -24,7 +24,7 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadPhotosFromFlickr()
+        viewModel.loadPhotos()
 
         setContent {
             val photoDetails by viewModel.photoDetails
