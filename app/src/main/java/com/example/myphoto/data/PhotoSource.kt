@@ -14,6 +14,7 @@ import kotlinx.coroutines.withContext
 
 class PhotoSource(private val client: HttpClient = KtorHttpClient) {
 
+    // run network call outside of main thread
     suspend fun load() : PhotoWrapper = withContext(Dispatchers.IO) {
         client.getFlickrPhotos().body()
     }

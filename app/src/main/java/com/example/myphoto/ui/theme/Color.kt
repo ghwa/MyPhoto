@@ -2,7 +2,6 @@ package com.example.myphoto.ui.theme
 
 import androidx.compose.ui.graphics.Color
 
-val Purple200 = Color(0xFFBB86FC)
-val Purple500 = Color(0xFF6200EE)
-val Purple700 = Color(0xFF3700B3)
-val Teal200 = Color(0xFF03DAC5)
+val ElectroBlue = Color(0xFF041E41)
+val ElectroBlue400 = Color(0xFF35456c)
+val Gray200 = Color(0xFFEEEEEE)
