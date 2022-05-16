@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
+import androidx.compose.runtime.collectAsState
 import androidx.compose.runtime.getValue
 import com.example.myphoto.ui.MyPhotoMainScreen
 import com.example.myphoto.ui.theme.MyPhotoTheme
@@ -18,10 +19,10 @@ class MainActivity : ComponentActivity() {
         viewModel.loadPhotos()
 
         setContent {
-            val photoDetails by viewModel.photoDetails
+            val photos by viewModel.photos.collectAsState()
 
             MyPhotoTheme {
-                MyPhotoMainScreen(photoDetails = photoDetails)
+                MyPhotoMainScreen(photos = photos)
             }
         }
     }

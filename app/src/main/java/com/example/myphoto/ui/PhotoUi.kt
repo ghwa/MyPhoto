@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.unit.dp
-import com.example.myphoto.data.PhotoDetail
 import com.example.myphoto.ui.theme.Gray200
+import com.example.shared.data.Photo
 import com.skydoves.landscapist.glide.GlideImage
 
 /**
@@ -22,13 +22,13 @@ import com.skydoves.landscapist.glide.GlideImage
 
 @OptIn(ExperimentalFoundationApi::class)
 @Composable
-fun PhotoGrid(photoDetails: List<PhotoDetail>) {
+fun PhotoGrid(photos: List<Photo>) {
     LazyVerticalGrid(
         cells = GridCells.Fixed(3),
         contentPadding = PaddingValues(4.dp)
     ) {
-        items(photoDetails) { photoDetail ->
-            PhotoItem(imageUrl = photoDetail.url_m)
+        items(photos) { photo ->
+            PhotoItem(imageUrl = photo.url)
         }
     }
 }
