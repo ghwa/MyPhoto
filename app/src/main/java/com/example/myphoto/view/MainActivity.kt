@@ -16,13 +16,12 @@ class MainActivity : ComponentActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        viewModel.loadPhotos()
 
         setContent {
-            val photos by viewModel.photos.collectAsState()
+            val photoState by viewModel.photos.collectAsState()
 
             MyPhotoTheme {
-                MyPhotoMainScreen(photos = photos)
+                MyPhotoMainScreen(photoState = photoState)
             }
         }
     }

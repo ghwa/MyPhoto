@@ -4,7 +4,7 @@ import android.app.Application
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.viewModelScope
 import com.example.myphoto.MyPhotoApplication
-import com.example.shared.data.Photo
+import com.example.myphoto.data.PhotoState
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
@@ -17,10 +17,15 @@ import kotlinx.coroutines.launch
 class MainViewModel(application: Application) : AndroidViewModel(application) {
 
     private val photoRepository = getApplication<MyPhotoApplication>().photoRepository
-    private val _photos = MutableStateFlow(emptyList<Photo>())
-    val photos: StateFlow<List<Photo>> = _photos
+    private val _photos = MutableStateFlow<PhotoState>(PhotoState.Loading)
+    val photos: StateFlow<PhotoState> = _photos
 
-    fun loadPhotos() {
+    init {
+        loadPhotos()
+    }
+
+    private fun loadPhotos() {
+        // run network call outside of main thread
          viewModelScope.launch(Dispatchers.IO) {
              _photos.value = photoRepository.getPhotos()
         }

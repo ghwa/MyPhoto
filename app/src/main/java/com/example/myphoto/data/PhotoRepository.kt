@@ -1,9 +1,8 @@
 package com.example.myphoto.data
 
-import com.example.shared.data.Photo
+import com.example.shared.data.FlickrDataWrapper
 import com.example.shared.data.PhotoSource
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.withContext
+import io.ktor.client.call.*
 
 /**
  *Created by jhcheng on 14/5/2022.
@@ -11,11 +10,16 @@ import kotlinx.coroutines.withContext
 
 class PhotoRepository(private val photoSource: PhotoSource = PhotoSource()) {
 
-    suspend fun getPhotos() : List<Photo> {
+    suspend fun getPhotos() : PhotoState {
+        val httpResponse = photoSource.getFlickrData()
 
-        // run network call outside of main thread
-        return withContext(Dispatchers.IO) {
-            photoSource.getFlickrData().flickrData.photos
+        return when (httpResponse.status.value) {
+            in 200..299 -> {
+                PhotoState.Success(httpResponse.body<FlickrDataWrapper>().flickrData.photos)
+            }
+            else -> {
+                PhotoState.Error(httpResponse.status.description)
+            }
         }
     }
 }
